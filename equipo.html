@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atrium Eventos - Nuestro Equipo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+    .main-header {
+      background: #000000;
+      border-bottom: 3px solid #D4AF37;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #D4AF37;
+      letter-spacing: 2px;
+    }
+    .logo .tagline {
+      color: #ffffff;
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid #D4AF37;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #D4AF37;
+      color: #000000;
+    }
+
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .team-intro {
+      text-align: center;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 4px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .team-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+    .team-intro p {
+      font-size: 16px;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .team-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 4px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      border-top: 4px solid #D4AF37;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      border-top-color: #000000;
+    }
+    .team-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #D4AF37;
+      margin: 0 auto 20px;
+      overflow: hidden;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+    .team-card .role {
+      color: #D4AF37;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .team-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .team-card .contact-info {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.8;
+    }
+    .team-card .click-hint {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #D4AF37;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* CV COMPLETO (oculto por defecto) */
+    .cv-full {
+      display: none;
+      background: #ffffff;
+      padding: 50px 60px;
+      border-radius: 4px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      position: relative;
+      border-top: 8px solid #000000;
+      margin-bottom: 40px;
+      animation: slideDown 0.5s ease;
+    }
+    .cv-full.active {
+      display: block;
+    }
+    .cv-full::after {
+      content: "";
+      position: absolute;
+      top: 8px; left: 0; right: 0;
+      height: 3px;
+      background: #D4AF37;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cv-header {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .photo-box {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #D4AF37;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cv-header-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #000000;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cv-header-text .role {
+      color: #D4AF37;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .cv-header-text .contact-mini {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .personal-data {
+      font-size: 12px;
+      color: #777;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #e0e0e0;
+    }
+
+    .content-section { margin-bottom: 28px; }
+    .content-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #000000;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #D4AF37;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .content-section p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .cv-item {
+      margin-bottom: 18px;
+      padding-left: 15px;
+      border-left: 3px solid #f0f0f0;
+      transition: border-color 0.3s ease;
+    }
+    .cv-item:hover { border-left-color: #D4AF37; }
+    .cv-item h3 {
+      font-size: 15px;
+      color: #000000;
+      font-weight: 600;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .cv-item .meta {
+      font-size: 13px;
+      color: #D4AF37;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .cv-item p {
+      font-size: 14px;
+      color: #444;
+      margin: 0;
+      text-align: left;
+    }
+
+    .skills-list, .education-list, .references-list {
+      list-style: none;
+      padding: 0;
+    }
+    .skills-list li {
+      font-size: 14px;
+      color: #333;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+      position: relative;
+      padding-left: 20px;
+    }
+    .skills-list li::before {
+      content: "◆";
+      color: #D4AF37;
+      font-size: 10px;
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+    .skills-list li:last-child { border-bottom: none; }
+
+    .education-list li {
+      font-size: 14px;
+      color: #333;
+      padding: 10px 0;
+      padding-left: 20px;
+      border-left: 2px solid #f0f0f0;
+      margin-bottom: 10px;
+    }
+    .education-list li strong {
+      color: #000000;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .education-list li span {
+      color: #D4AF37;
+      font-size: 13px;
+    }
+
+    .references-list li {
+      font-size: 14px;
+      color: #333;
+      padding: 12px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .references-list li strong {
+      color: #000000;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .references-list li span {
+      color: #D4AF37;
+      font-size: 13px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .references-list li em {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: #000000;
+      color: #D4AF37;
+      border: 2px solid #D4AF37;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    .close-btn:hover {
+      background: #D4AF37;
+      color: #000000;
+    }
+
+    .main-footer {
+      background: #000000;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 3px solid #D4AF37;
+    }
+    .main-footer h3 {
+      font-family: 'Playfair Display', serif;
+      color: #D4AF37;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .main-footer p { font-size: 14px; margin-bottom: 8px; color: #cccccc; }
+    .tagline-footer { margin-top: 20px; font-style: italic; color: #999; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .cv-full { padding: 30px 25px; }
+      .cv-header { flex-direction: column; text-align: center; align-items: center; }
+      .cv-header-text .contact-mini, .personal-data { text-align: center; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo.png" alt="Atrium Eventos" style="height: 125px; width: auto;">
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="servicios.html" class="nav-link">Servicios</a>
+        <a href="equipo.html" class="nav-link active">Nuestro Equipo</a>
+        <a href="galeria.html" class="nav-link">Eventos</a>
+        <a href="demo.html" class="nav-link">Demo QR</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="content-container">
+
+    <div class="team-intro">
+      <h2>Nuestro Equipo</h2>
+      <p>Conoce a los profesionales que conforman Atrium Eventos. Somos un equipo fundado y dirigido por profesionales licenciados, comprometidos con la excelencia y el crecimiento continuo. <strong>Haz click en cada integrante para ver su CV completo.</strong></p>
+    </div>
+
+    <!-- TARJETAS DEL EQUIPO -->
+    <div class="team-grid">
+      <div class="team-card" onclick="toggleCV('cv-nayeli')">
+        <div class="team-photo">
+          <img src="nayeli.jpg" alt="Nayeli Avendaño">
+        </div>
+        <h3>Nayeli Avendaño</h3>
+        <div class="role">Co-Fundadora</div>
+        <p>Estudiante de Licenciatura en Gestión Turística con experiencia en hotelería y servicios de hospitalidad.</p>
+        <div class="contact-info">
+          📱 0416-471.54.31<br>
+          📧 nayeli.avendanof@gmail.com
+        </div>
+        <div class="click-hint">▼ Ver CV Completo</div>
+      </div>
+
+      <div class="team-card" onclick="toggleCV('cv-daniel')">
+        <div class="team-photo">
+          <img src="daniel.jpeg" alt="Daniel Dugarte">
+        </div>
+        <h3>Daniel Dugarte</h3>
+        <div class="role">Co-Fundador</div>
+        <p>Estudiante de Licenciatura en Turismo mención Gastronomía, especialista en protocolo y servicio.</p>
+        <div class="contact-info">
+          📱 0414-1762571<br>
+          📧 danieldugartegarcia.15@gmail.com
+        </div>
+        <div class="click-hint">▼ Ver CV Completo</div>
+      </div>
+
+      <div class="team-card" onclick="toggleCV('cv-jose')">
+        <div class="team-photo">
+          <img src="jose.jpg" alt="José Dugarte">
+        </div>
+        <h3>José Dugarte</h3>
+        <div class="role">Co-Fundador</div>
+        <p>TSU en Hotelería con experiencia en bartender y operaciones de alimentos y bebidas.</p>
+        <div class="contact-info">
+          📱 0412-2912617<br>
+          📧 josemiguel.dugartezambrano@gmail.com
+        </div>
+        <div class="click-hint">▼ Ver CV Completo</div>
+      </div>
+
+      <div class="team-card" onclick="toggleCV('cv-endir')">
+        <div class="team-photo">
+          <img src="endir.png" alt="Endir Meza">
+        </div>
+        <h3>Endir Meza</h3>
+        <div class="role">Co-Fundadora</div>
+        <p>Estudiante de Licenciatura en Gestión Turística con experiencia administrativa y operativa.</p>
+        <div class="contact-info">
+          📱 0414-7050-493<br>
+          📧 mezaendir@gmail.com
+        </div>
+        <div class="click-hint">▼ Ver CV Completo</div>
+      </div>
+    </div>
+
+    <!-- CV NAYELI -->
+    <div id="cv-nayeli" class="cv-full">
+      <button class="close-btn" onclick="toggleCV('cv-nayeli')">✕</button>
+      
+      <div class="cv-header">
+        <div class="photo-box">
+          <img src="nayeli.jpg" alt="Nayeli Penelope Avendaño Flores">
+        </div>
+        <div class="cv-header-text">
+          <h1>Nayeli Penelope Avendaño Flores</h1>
+          <div class="role">Estudiante de Licenciatura mención Gestión Turística</div>
+          <div class="contact-mini">
+            📱 0416-471.54.31<br>
+            📧 nayeli.avendanof@gmail.com<br>
+            📍 Mérida, Av. Universidad, Residencias Villas Garden, Casa #2
+          </div>
+          <div class="personal-data">
+            <strong>Fecha de nacimiento:</strong> 31/10/2002 &nbsp;|&nbsp; 
+            <strong>Edad:</strong> 23 &nbsp;|&nbsp; 
+            <strong>Cédula:</strong> V-29.634.830
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Sobre Mí</h2>
+        <p>Soy una persona con prontitud en la asimilación de nuevos conocimientos, empática, responsable, destaco por mi capacidad de adaptación, enfocada al constante crecimiento y aprendizaje.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Formación Académica</h2>
+        <ul class="education-list">
+          <li>
+            <strong>Estudiante de Licenciatura mención Gestión Turística</strong>
+            <span>2025 – Actualidad</span>
+          </li>
+          <li>
+            <strong>Núcleo Hotel Escuela de los Andes Venezolanos - T.S.U en Hotelería y Servicios de la Hospitalidad</strong>
+            <span>2022 – 2025</span>
+          </li>
+          <li>
+            <strong>Liceo Bolivariano "Alberto Carnevali" - Bachiller en Ciencias</strong>
+            <span>2014 – 2019</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Experiencia Laboral</h2>
+        <div class="cv-item">
+          <h3>México Lindo Tex-Mex Bar</h3>
+          <div class="meta">2025</div>
+          <p>Redes sociales.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Posada Glorias Patrias</h3>
+          <div class="meta">2024</div>
+          <p>Recepción, atención al público y ama de llaves.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Convención Hotel Boutique - Desván</h3>
+          <div class="meta">2023</div>
+          <p>Ama de llaves, recepción, comercialización, evento, etiqueta y protocolo, cocina, barra, servicio en sala.</p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Habilidades</h2>
+        <ul class="skills-list">
+          <li>Manejo básico de herramientas digitales (Excel, Office, Canva, Photoshop, Illustrator)</li>
+          <li>Trabajo en equipo</li>
+          <li>Cumplimiento de tareas</li>
+          <li>Proactiva</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Idiomas</h2>
+        <ul class="skills-list">
+          <li>Español (Nativo)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CV DANIEL -->
+    <div id="cv-daniel" class="cv-full">
+      <button class="close-btn" onclick="toggleCV('cv-daniel')">✕</button>
+      
+      <div class="cv-header">
+        <div class="photo-box">
+          <img src="daniel.jpeg" alt="Daniel Alejandro Dugarte Garcia">
+        </div>
+        <div class="cv-header-text">
+          <h1>Daniel Alejandro Dugarte Garcia</h1>
+          <div class="role">Estudiante de Licenciatura en Turismo mención Gastronomía</div>
+          <div class="contact-mini">
+            📱 0414-1762571<br>
+            📧 danieldugartegarcia.15@gmail.com<br>
+            📍 Urbanización Santa Juana, residencias Campo de oro, bloque 22 apto 01-01, Edo. Mérida
+          </div>
+          <div class="personal-data">
+            <strong>C.I:</strong> 30.034.572 &nbsp;|&nbsp; 
+            <strong>Fecha de nacimiento:</strong> 15-08-2003 &nbsp;|&nbsp; 
+            <strong>Lugar de nacimiento:</strong> Mérida, Venezuela &nbsp;|&nbsp; 
+            <strong>Nacionalidad:</strong> Venezolano
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Perfil Personal</h2>
+        <p>Me destaco por ser una persona proactiva, puntual, con sentido de pertenencia y disciplina para desempeñar las actividades asignadas. Soy amante de la gastronomía, el alojamiento, los eventos, protocolo y servicio.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Educación</h2>
+        <ul class="education-list">
+          <li>
+            <strong>Actualmente cursando IV trayecto de Licenciatura en Turismo mención Gastronomía en UNATUR-NUHELAV.</strong>
+            <span>En curso</span>
+          </li>
+          <li>
+            <strong>Estudios Universitarios: T.S.U. en hotelería y servicios de la hospitalidad en UNATUR-NUHELAV.</strong>
+            <span>2021 - 2025</span>
+          </li>
+          <li>
+            <strong>U.E. Colegio San Martín de Porres</strong>
+            <span>2018 - 2020</span>
+          </li>
+          <li>
+            <strong>Estudios de Secundaria: U.E. "Nuestra señora de Belén" Colegio Serafico</strong>
+            <span>2015 - 2018</span>
+          </li>
+          <li>
+            <strong>Estudios de primaria: U.E. "Nuestra señora de Belén" Colegio Serafico</strong>
+            <span>2009 - 2015</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Experiencia Laboral</h2>
+        <div class="cv-item">
+          <h3>Hotel Convencion Boutique. (Eventual)</h3>
+          <div class="meta">2022 - 2026</div>
+          <p>Cargo ocupado: Capitán de mesoneros/Jefe de protocolo.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Desván Gastrobar. (Eventual)</h3>
+          <div class="meta">2022 - 2023</div>
+          <p>Cargo ocupado: Mesonero.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Hotel Los Lirios. (Eventual)</h3>
+          <div class="meta">2022 - 2023</div>
+          <p>Cargo ocupado: Mesonero/Ayudante de barra/recepcionista/camarero.</p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Habilidades</h2>
+        <ul class="skills-list">
+          <li><strong>Técnicas:</strong> Barismo, protocolo, servicio en sala, organizacion de eventos, uso de sistemas informaticos (Word, Excel).</li>
+          <li><strong>Personales:</strong> Sentido de la responsabilidad, liderazgo, capacidad de trabajar en equipo, capacidad de análisis y de adaptación</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Idiomas</h2>
+        <ul class="skills-list">
+          <li>Español</li>
+          <li>Inglés</li>
+          <li>Francés</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Otros Estudios Realizados</h2>
+        <ul class="skills-list">
+          <li><strong>INGLES:</strong> actualmente en curso de Ingles en Lingua Academia de Idiomas.</li>
+          <li><strong>CHEF INTERNACIONAL:</strong> Curso realizado en el Centro Gastronómico de Alta Cocina Jesús Sánchez Chef. (2023 - 2025)</li>
+          <li><strong>BARIMO BÁSICO PROFESIONAL.</strong> Curso realizado en Bar Canaima C.A. (2020)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CV JOSÉ -->
+    <div id="cv-jose" class="cv-full">
+      <button class="close-btn" onclick="toggleCV('cv-jose')">✕</button>
+      
+      <div class="cv-header">
+        <div class="photo-box">
+          <img src="jose.jpg" alt="José Miguel Dugarte Zambrano">
+        </div>
+        <div class="cv-header-text">
+          <h1>José Miguel Dugarte Zambrano</h1>
+          <div class="role">Estudiante de Licenciatura mención Gestión Turística</div>
+          <div class="contact-mini">
+            📱 0412-2912617<br>
+            📧 josemiguel.dugartezambrano@gmail.com<br>
+            📍 Ejido, Av Centenario, Calle Industria, Casa N°49-C
+          </div>
+          <div class="personal-data">
+            <strong>C.I:</strong> 28.501.127 &nbsp;|&nbsp; 
+            <strong>Edad:</strong> 23 años
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Sobre Mí</h2>
+        <p>Soy una persona muy colaboradora en cualquier tarea a desarrollar. Mi sociabilidad y habilidades comunicativas me permiten interactuar de manera efectiva con mi equipo de trabajo y el personal, y así prestar un excelente servicio. Siempre dispuesto a aprender, y compartir mis conocimientos adquiridos en diferentes áreas, lo considero como una de mis fortalezas.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Estudios</h2>
+        <ul class="education-list">
+          <li>
+            <strong>Universitario - TSU en Hotelería y Servicios de la Hospitalidad<br>UNATUR- Núcleo Hotel Escuela de los Andes Venezolanos (HELAV)</strong>
+            <span>2025<br>Actualmente cursando Lic. en Gestión Turística</span>
+          </li>
+          <li>
+            <strong>Bachillerato - E. T. C. R. N. Profesor José Ricardo Guillen Suárez</strong>
+            <span>2015 - 2021<br>Técnico Medio En Comercio y Servicios Administrativos Mención Turismo</span>
+          </li>
+          <li>
+            <strong>Primaria - U. E. Colegio San Pio "X"</strong>
+            <span>2007 - 2015</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Experiencia Laboral</h2>
+        <div class="cv-item">
+          <h3>Bartender</h3>
+          <div class="meta">Dahaus Deck C.A. Ejido, edo Mérida | 2024 - 2025</div>
+        </div>
+        <div class="cv-item">
+          <h3>Pasante Operativo en las Áreas de Alojamiento y Alimentos y Bebidas</h3>
+          <div class="meta">Hotel La Aventura Suite C.A. Tucacas, edo Falcón | 2023</div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Referencias Laborales</h2>
+        <ul class="references-list">
+          <li>
+            <strong>Kenny Leon</strong>
+            <span>Licenciado en Gastronomía, Bartender, Profesor en el Área de Coctelería (UNATUR- HELAV)</span>
+            <em>📱 0416-6071591</em>
+          </li>
+          <li>
+            <strong>Carlos Flores</strong>
+            <span>Directo Ejecutivo, Dahaus Deck C.A</span>
+            <em>📱 0414-7308096</em>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CV ENDIR -->
+    <div id="cv-endir" class="cv-full">
+      <button class="close-btn" onclick="toggleCV('cv-endir')">✕</button>
+      
+      <div class="cv-header">
+        <div class="photo-box">
+          <img src="endir.png" alt="Endir Stefani Meza Hernandez">
+        </div>
+        <div class="cv-header-text">
+          <h1>Endir Stefani Meza Hernandez</h1>
+          <div class="role">Estudiante de Licenciatura en Gestión Turística</div>
+          <div class="contact-mini">
+            📱 0414-7050-493<br>
+            📧 mezaendir@gmail.com<br>
+            📍 La hoyada de milla, pasos arriba de la E/S pascual, Mérida edo Mérida
+          </div>
+          <div class="personal-data">
+            <strong>C.I:</strong> 29.794.783 &nbsp;|&nbsp; 
+            <strong>Fecha de Nacimiento:</strong> 13/01/2003 &nbsp;|&nbsp; 
+            <strong>Lugar de Nacimiento:</strong> Mérida edo Mérida
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Perfil</h2>
+        <p>Actualmente estudiante de la licenciatura Gestión Turística capaz de gestionar procesos operativos y administrativos, responsable, comprometida con la misión y visión de la empresa, para ofrecer un servicio de excelencia, con gran vocación al servicio y con adaptabilidad al nuevo ambiente y equipo laboral.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Formación</h2>
+        <ul class="education-list">
+          <li>
+            <strong>C.U HOTEL ESCUELA DE LOS ANDES VENEZOLANOS (UNATUR)</strong>
+            <span>2025 - PRESENTE<br>Actualmente estudiante del IV trayecto de licenciatura en Gestión Turística de la universidad UNATUR</span>
+          </li>
+          <li>
+            <strong>C.U HOTEL ESCUELA DE LOS ANDES VENEZOLANOS (UNATUR)</strong>
+            <span>2022 - 2025<br>TSU en Hotelería y Servicio de la hospitalidad</span>
+          </li>
+          <li>
+            <strong>U.E TIMOTEO AGUIRRE PE</strong>
+            <span>2014 - 2020<br>Técnico medio en comercio y servicios administrativos mención: Turismo</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Experiencia Laboral</h2>
+        <div class="cv-item">
+          <h3>Operadora de Call Center</h3>
+          <div class="meta">Paradise Hotels | Ene - Jun 2025</div>
+          <p>Atención al cliente, manejo de sistema de reservas, manejo de sistema KIU de boletaria aérea.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Pasante Administrativo</h3>
+          <div class="meta">Hotel Hesperia Morrocoy | Ago - Nov 2024</div>
+          <p>Pasante Administrativo en las areas tales como: Gerencia talento humano, Administracion y Auditoria, Comercial y reservas.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Asistente de Comercializacion y Recepcionista</h3>
+          <div class="meta">Hotel Valle Grande (IPASME) | May - Jul 2024</div>
+          <p>Atención al publico, crear reservaciones, eventos y banquetes, Manejo de redes y publicidad.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Mesonera</h3>
+          <div class="meta">Hotel Paramo La Culata | Dic 2023 - Ene 2024</div>
+          <p>Montaje de mesas, Atencion al publico, Mise place, Lunchera, ayudante de bartender.</p>
+        </div>
+        <div class="cv-item">
+          <h3>Pasante Operativo</h3>
+          <div class="meta">Hotel Paradise Puerto La Cruz | Feb - Jul 2023</div>
+          <p>Pasante Operativo en las aéreas tales como: Recepcion-Atencion al publico, cocina - Ayudante de cocina, Restaurant- atencion al publico, Ventas y reserva - Asistente, Almacén-Almacenista, Ama de llaves - camarera, aseadora.</p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>Idiomas</h2>
+        <ul class="skills-list">
+          <li>Español</li>
+          <li>Ingles Basico</li>
+          <li>Frances Basico</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Referencias Personales</h2>
+        <ul class="references-list">
+          <li>
+            <strong>Jhon Bastidas</strong>
+            <span>Auditor de Ingreso Hotel Hesperia Morrocoy</span>
+            <em>📱 0414-4822-063</em>
+          </li>
+          <li>
+            <strong>Lic. Yorsa Perdomo</strong>
+            <span>IRRHH Hotel paramo la culata</span>
+            <em>📱 0424-7732-744</em>
+          </li>
+          <li>
+            <strong>Pedro Quijada</strong>
+            <span>Jefe de recepcion hotel paradise PLC</span>
+            <em>📱 0414-9477-029</em>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="main-footer">
+    <h3>Atrium Eventos</h3>
+    <p>📍 Mérida, Venezuela</p>
+    <p>📧 atrium.ev@gmail.com</p>
+    <p class="tagline-footer">"Donde la Elegancia se encuentra con la Eficiencia."</p>
+  </footer>
+
+  <script>
+    function toggleCV(cvId) {
+      const cv = document.getElementById(cvId);
+      const allCvs = document.querySelectorAll('.cv-full');
+      
+      allCvs.forEach(c => {
+        if (c.id !== cvId) {
+          c.classList.remove('active');
+        }
+      });
+      
+      cv.classList.toggle('active');
+      
+      if (cv.classList.contains('active')) {
+        cv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  </script>
+
+</body>
+</html>

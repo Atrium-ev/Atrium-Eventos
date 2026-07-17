@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atrium Eventos - Demo QR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+    .main-header {
+      background: #000000;
+      border-bottom: 3px solid #D4AF37;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #D4AF37;
+      letter-spacing: 2px;
+    }
+    .logo .tagline {
+      color: #ffffff;
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid #D4AF37;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #D4AF37;
+      color: #000000;
+    }
+
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .demo-intro {
+      text-align: center;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 4px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .demo-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+    .demo-intro p {
+      font-size: 16px;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .demo-card {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 4px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      border-top: 4px solid #D4AF37;
+      text-align: center;
+    }
+    .demo-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+    .demo-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .qr-placeholder {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+      border: 3px solid #D4AF37;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+    }
+    .qr-placeholder .icon {
+      font-size: 60px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .coming-soon {
+      background: #ffffff;
+      padding: 60px 40px;
+      border-radius: 4px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      border-left: 4px solid #D4AF37;
+    }
+    .coming-soon h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+    .coming-soon p {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .main-footer {
+      background: #000000;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 3px solid #D4AF37;
+    }
+    .main-footer h3 {
+      font-family: 'Playfair Display', serif;
+      color: #D4AF37;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .main-footer p { font-size: 14px; margin-bottom: 8px; color: #cccccc; }
+    .tagline-footer { margin-top: 20px; font-style: italic; color: #999; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-content">
+   <div class="logo">
+        <!-- Asegúrate de que tu imagen se llame "logo.png" y esté en la misma carpeta -->
+<img src="logo.png" alt="Atrium Eventos" style="height: 125px; width: auto;">
+      </div>
+<nav class="nav-links">
+  <a href="index.html" class="nav-link active">Inicio</a> <!-- Cambia 'active' según la página -->
+  <a href="servicios.html" class="nav-link">Servicios</a>
+  <a href="equipo.html" class="nav-link">Nuestro Equipo</a>
+  <a href="galeria.html" class="nav-link">Eventos</a>
+  <a href="demo.html" class="nav-link">Demo QR</a>
+</nav>
+    </div>
+  </header>
+
+  <div class="content-container">
+
+    <div class="demo-intro">
+      <h2>Demo QR</h2>
+      <p>Descubre cómo funciona nuestro sistema de accesos QR y las tarjetas de presentación digitales de nuestro equipo. Esta sección mostrará ejemplos interactivos de nuestra tecnología.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h3>Tarjetas de Presentación</h3>
+        <p>Cada integrante de nuestro equipo cuenta con una tarjeta de presentación con código QR que enlaza directamente a su perfil profesional.</p>
+        <div class="qr-placeholder">
+          <div>
+            <span class="icon">📱</span>
+            QR de Tarjeta<br>Próximamente
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Sistema de Accesos QR</h3>
+        <p>Nuestro sistema propio de validación y acreditación digital elimina filas, previene fraudes y agiliza la entrada de sus invitados.</p>
+        <div class="qr-placeholder">
+          <div>
+            <span class="icon">🎫</span>
+            Demo de Acceso<br>Próximamente
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h3>Portafolio Digital</h3>
+        <p>Al escanear el QR de nuestras tarjetas, accedes a esta página web con toda la información de nuestro equipo y servicios.</p>
+        <div class="qr-placeholder">
+          <div>
+            <span class="icon">🌐</span>
+            Portafolio<br>¡Ya estás aquí!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="coming-soon">
+      <h3>🚧 En Desarrollo</h3>
+      <p>Estamos trabajando en la integración completa de la demo interactiva del sistema QR. Muy pronto podrás experimentar cómo funciona nuestro sistema de accesos y validación digital en tiempo real.</p>
+    </div>
+
+  </div>
+
+  <footer class="main-footer">
+    <h3>Atrium Eventos</h3>
+    <p>📍 Mérida, Venezuela</p>
+    <p>📧 atrium.ev@gmail.com</p>
+    <p class="tagline-footer">"Donde la Elegancia se encuentra con la Eficiencia."</p>
+  </footer>
+
+</body>
+</html>

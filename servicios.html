@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atrium Eventos - Nuestros Servicios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+    .main-header {
+      background: #000000;
+      border-bottom: 3px solid #D4AF37;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #D4AF37;
+      letter-spacing: 2px;
+    }
+    .logo .tagline {
+      color: #ffffff;
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid #D4AF37;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      color: #D4AF37;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #D4AF37;
+      color: #000000;
+    }
+
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .services-intro {
+      text-align: center;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 4px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .services-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+    .services-intro p {
+      font-size: 16px;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* GRID DE SERVICIOS */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .service-card {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 4px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-top: 4px solid #D4AF37;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .service-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .service-header .diamond {
+      color: #D4AF37;
+      font-size: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #000000;
+      margin: 0;
+    }
+    .service-card > p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .service-includes {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 20px;
+    }
+    .service-includes li {
+      font-size: 13px;
+      color: #444;
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .service-includes li::before {
+      content: "◆";
+      color: #D4AF37;
+      font-size: 8px;
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    /* CTA / CONTACTO */
+    .cta-section {
+      background: #000000;
+      color: #ffffff;
+      padding: 60px 40px;
+      border-radius: 4px;
+      text-align: center;
+      border-bottom: 4px solid #D4AF37;
+    }
+    .cta-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #D4AF37;
+      margin-bottom: 15px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: #cccccc;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: #D4AF37;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .main-footer {
+      background: #000000;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 3px solid #D4AF37;
+    }
+    .main-footer h3 {
+      font-family: 'Playfair Display', serif;
+      color: #D4AF37;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .main-footer p { font-size: 14px; margin-bottom: 8px; color: #cccccc; }
+    .tagline-footer { margin-top: 20px; font-style: italic; color: #999; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .nav-links { justify-content: center; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-content">
+   <div class="logo">
+        <!-- Asegúrate de que tu imagen se llame "logo.png" y esté en la misma carpeta -->
+<img src="logo.png" alt="Atrium Eventos" style="height: 125px; width: auto;">
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="servicios.html" class="nav-link active">Servicios</a>
+        <a href="equipo.html" class="nav-link">Nuestro Equipo</a>
+        <a href="galeria.html" class="nav-link">Eventos</a>
+        <a href="demo.html" class="nav-link">Demo QR</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="content-container">
+
+    <div class="services-intro">
+      <h2>Nuestros Servicios</h2>
+      <p>En Atrium Eventos ofrecemos soluciones integrales diseñadas para elevar el estándar de sus eventos sociales y corporativos. Cada servicio es ejecutado por profesionales licenciados bajo estrictos protocolos de calidad.</p>
+    </div>
+
+    <div class="services-grid">
+      
+      <!-- Servicio 1 -->
+      <div class="service-card">
+        <div class="service-header">
+          <span class="diamond">◆</span>
+          <h3>Servicio en Sala</h3>
+        </div>
+        <p>Atención profesional durante el evento. Nuestro personal está capacitado para garantizar una experiencia gastronómica impecable para sus invitados.</p>
+        <ul class="service-includes">
+          <li>Montaje y desmontaje de mesa</li>
+          <li>Servicio de alimentos y bebidas</li>
+          <li>Atención personalizada y discreta</li>
+          <li>Manejo de cristalería, cubertería y loza fina</li>
+        </ul>
+      </div>
+
+      <!-- Servicio 3 -->
+      <div class="service-card">
+        <div class="service-header">
+          <span class="diamond">◆</span>
+          <h3>Etiqueta y Protocolo</h3>
+        </div>
+        <p>Coordinación experta de ceremonial y recibimiento de invitados. Manejo profesional de autoridades, VIPs y dinámicas de alto nivel.</p>
+        <ul class="service-includes">
+          <li>Coordinación de recibimiento y acreditación</li>
+          <li>Asistencia a autoridades y VIPs</li>
+        </ul>
+      </div>
+
+      <!-- Servicio 4 -->
+      <div class="service-card">
+        <div class="service-header">
+          <span class="diamond">◆</span>
+          <h3>Tecnología de Accesos QR</h3>
+        </div>
+        <p>Sistema propio de validación y acreditación digital.</p>
+        <ul class="service-includes">
+          <li>Generación de entradas digitales personalizadas</li>
+          <li>Escaneo y validación rápida en puerta</li>
+          <li>Control de aforo en tiempo real</li>
+          <li>Reportes de asistencia post-evento</li>
+        </ul>
+      </div>
+
+      <!-- Servicio 5 -->
+      <div class="service-card">
+        <div class="service-header">
+          <span class="diamond">◆</span>
+          <h3>Reclutamiento y Escalabilidad</h3>
+        </div>
+        <p>Contamos con un núcleo de personal fijo y la capacidad operativa para buscar, filtrar y capacitar personal adicional (extras) según la magnitud de su evento.</p>
+        <ul class="service-includes">
+          <li>Personal base altamente entrenado</li>
+          <li>Reclutamiento de extras bajo perfil específico</li>
+          <li>Capacitación express pre-evento</li>
+          <li>Adaptabilidad a eventos de cualquier escala</li>
+        </ul>
+      </div>
+
+      <!-- Servicio 6 -->
+      <div class="service-card">
+        <div class="service-header">
+          <span class="diamond">◆</span>
+          <h3>Coordinación Operativa</h3>
+        </div>
+        <p>Nos hacemos cargo de toda la logística del personal para que usted solo se enfoque en el éxito y disfrute de su evento.</p>
+        <ul class="service-includes">
+          <li>Supervisor de operaciones en el lugar</li>
+          <li>Gestión de tiempos y rutinas del personal</li>
+          <li>Resolución de incidencias en tiempo real</li>
+          <li>Enlace directo con el organizador del evento</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h3>¿Listo para elevar el estándar de su próximo evento?</h3>
+      <p>Contáctenos para solicitar una cotización personalizada o agendar una reunión para conocer más sobre cómo podemos ayudarle.</p>
+      <a href="mailto:atrium.ev@gmail.com" class="cta-button">Solicitar Cotización</a>
+    </div>
+
+  </div>
+
+  <footer class="main-footer">
+    <h3>Atrium Eventos</h3>
+    <p>📍 Mérida, Venezuela</p>
+    <p>📧 atrium.ev@gmail.com</p>
+    <p class="tagline-footer">"Donde la Elegancia se encuentra con la Eficiencia."</p>
+  </footer>
+
+</body>
+</html>
