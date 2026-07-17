@@ -13,15 +13,32 @@
       color: #1a1a1a;
       line-height: 1.6;
     }
-    .main-header {
+       .main-header {
       background: #000000;
       border-bottom: 3px solid #D4AF37;
-      padding: 20px;
-      position: sticky;
+      padding: 15px 20px; /* Un poco más compacto */
+      position: fixed; /* Cambiado de sticky a fixed */
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out; /* Animación suave de ocultamiento */
     }
+    
+    /* Clase que agregaremos con JavaScript para ocultarlo */
+    .main-header.oculto {
+      transform: translateY(-100%);
+    }
+
+    /* Ajuste importante: como el header ahora es fixed, necesitamos 
+       empujar el contenido hacia abajo para que no quede tapado al inicio */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 20px 40px; /* Aumentamos el padding superior de 40px a 120px */
+    }
+
     .header-content {
       max-width: 1200px;
       margin: 0 auto;
@@ -338,5 +355,40 @@
     <p class="tagline-footer">"Donde la Elegancia se encuentra con la Eficiencia."</p>
   </footer>
 
+    <script>
+    // 1. LÓGICA PARA OCULTAR/MOSTRAR EL HEADER AL HACER SCROLL
+    let lastScrollTop = 0;
+    const header = document.querySelector('.main-header');
+    
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Si baja más de 100px, oculta el header. Si sube, lo muestra.
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        header.classList.add('oculto');
+      } else {
+        header.classList.remove('oculto');
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+    }, false);
+
+    // 2. LÓGICA PARA DESPLEGAR LOS CVs (Solo en equipo.html)
+    function toggleCV(cvId) {
+      const cv = document.getElementById(cvId);
+      const allCvs = document.querySelectorAll('.cv-full');
+      
+      if (cv.classList.contains('active')) {
+        cv.classList.remove('active');
+        return;
+      }
+      
+      allCvs.forEach(c => c.classList.remove('active'));
+      cv.classList.add('active');
+      
+      setTimeout(() => {
+        cv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  </script>
 </body>
 </html>
